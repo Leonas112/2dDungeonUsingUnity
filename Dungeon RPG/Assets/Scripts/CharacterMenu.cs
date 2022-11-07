@@ -11,6 +11,7 @@ public class CharacterMenu : MonoBehaviour
 
     //Logic
     private int currentCharacterSelection = 0;
+
     public Image characterSelectionSprite;
     public Image weaponSprite;
     public RectTransform xpBar;
@@ -19,7 +20,7 @@ public class CharacterMenu : MonoBehaviour
     public void OnArrowClick(bool right)
     {
         if (right)
-        { 
+        {
             currentCharacterSelection++;
 
             //If we awent too far away
@@ -27,17 +28,17 @@ public class CharacterMenu : MonoBehaviour
                 currentCharacterSelection = 0;
 
             OnSelectionChanged();
-    }
+        }
         else
-       
+
             currentCharacterSelection--;
 
-            //If we awent too far away
-            if (currentCharacterSelection < 0)
-                currentCharacterSelection = GameManager.instance.playerSprites.Count - 1;
+        //If we awent too far away
+        if (currentCharacterSelection < 0)
+            currentCharacterSelection = GameManager.instance.playerSprites.Count - 1;
 
-            OnSelectionChanged();
-}
+        OnSelectionChanged();
+    }
 
     private void OnSelectionChanged()
     {
@@ -51,7 +52,6 @@ public class CharacterMenu : MonoBehaviour
         //Update Character info
         if (GameManager.instance.TryUpgradeWeapon())
             UpdateMenu();
-       
     }
 
     //Update character information
@@ -63,7 +63,6 @@ public class CharacterMenu : MonoBehaviour
             upgradeConstText.text = "MAX";
         else
             upgradeConstText.text = GameManager.instance.weaponPrices[GameManager.instance.weapon.weaponLevel].ToString();
-
 
         //Meta
         levelText.text = GameManager.instance.GetCurrentLevel().ToString();
@@ -90,9 +89,4 @@ public class CharacterMenu : MonoBehaviour
             xpText.text = currXpIntoLevel.ToString() + " / " + diff;
         }
     }
-
-
-
-        
-    
 }
